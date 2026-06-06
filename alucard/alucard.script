@@ -1,0 +1,27 @@
+Window.SetBackgroundTopColor (0.0, 0.0, 0.0);
+Window.SetBackgroundBottomColor (0.0, 0.0, 0.0);
+
+frames = [];
+num_frames = 16;
+for (i = 0; i < num_frames; i++) {
+    frames[i] = Image("frame-" + i + ".png");
+}
+
+sprite = Sprite();
+sprite.SetZ(100);
+
+progress = 0;
+
+fun refresh_callback () {
+    frame_index = Math.Int(progress / 3) % num_frames;
+    sprite.SetImage(frames[frame_index]);
+    
+    // Setting position inside the refresh callback ensures the window dimensions 
+    // are fully loaded and correct, preventing it from snapping to the top-left.
+    sprite.SetX(Window.GetX() + Window.GetWidth() / 2 - frames[frame_index].GetWidth() / 2);
+    sprite.SetY(Window.GetY() + Window.GetHeight() / 2 - frames[frame_index].GetHeight() / 2);
+    
+    progress++;
+}
+
+Plymouth.SetRefreshFunction (refresh_callback);

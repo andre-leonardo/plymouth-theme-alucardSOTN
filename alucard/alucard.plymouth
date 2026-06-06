@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Alucard
+Description=Alucard Boot Splash
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/alucard
+ScriptFile=/usr/share/plymouth/themes/alucard/alucard.script
