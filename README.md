@@ -1,10 +1,45 @@
-# plymouth-theme-alucardSOTN
-Theme of Alucard from Symphony of the Night for Plymouth
+# Alucard SOTN Plymouth Boot Theme
+
+A custom Plymouth boot splash screen featuring Alucard from Castlevania: Symphony of the Night, complete with an animated familiar sword loading bar!
+
+## Installation
+
+### Step 1: Copy the Theme Folder
+First, open your terminal in the directory where you extracted this download, and copy the `alucard` folder into your system's Plymouth themes directory:
+
+```bash
+sudo cp -r alucard /usr/share/plymouth/themes/
 ```
-sudo cp -r ~/Downloads/alucard-plymouth /usr/share/plymouth/themes/alucard
+
+### Step 2: Set the Theme & Update Boot Image
+The command to apply the theme and rebuild your boot image depends on your Linux distribution:
+
+#### Arch Linux / CachyOS / Manjaro / EndeavourOS
+```bash
 sudo plymouth-set-default-theme -R alucard
 ```
-The second command rebuilds your boot image, so beware of power outages
+*(Note: Do not interrupt this command while it runs! It may take a minute or two to rebuild your `initramfs`.)*
 
-<img width="3838" height="2158" alt="image" src="https://github.com/user-attachments/assets/f9ec5a92-bace-4eb1-a6c1-2e3ed8c7bbd2" />
+#### Fedora / RHEL / Nobara
+```bash
+sudo plymouth-set-default-theme -R alucard
+```
+*(Note: This uses dracut under the hood to rebuild your boot image. Do not interrupt it.)*
 
+#### Ubuntu / Debian / Linux Mint / Pop!_OS
+On Debian-based systems, `plymouth-set-default-theme -R alucard` usually works, but if it doesn't, use the standard alternatives method:
+```bash
+sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/alucard/alucard.plymouth 100
+sudo update-alternatives --set default.plymouth /usr/share/plymouth/themes/alucard/alucard.plymouth
+sudo update-initramfs -u
+```
+
+### Testing Without Rebooting
+If you want to preview the animation on your desktop before restarting your PC, you can run:
+```bash
+sudo plymouthd ; sudo plymouth --show-splash ; sleep 5 ; sudo plymouth quit
+```
+
+---
+**Credits & Disclaimer:**
+The character "Alucard" and the "Familiar Sword" are properties of Konami Digital Entertainment. This is a non-commercial, fan-made theme.
