@@ -25,3 +25,39 @@ fun refresh_callback () {
 }
 
 Plymouth.SetRefreshFunction (refresh_callback);
+
+// --- Sword Loading Bar ---
+sword_image = Image("familiar_sword.png");
+sword_sprite = Sprite(sword_image);
+sword_sprite.SetZ(100);
+
+black_image = Image("black.png");
+mask_sprite = Sprite();
+mask_sprite.SetZ(101); // Above the sword to hide the unfilled part
+
+fun progress_callback (duration, boot_progress) {
+    if (frames[0]) {
+        // Position below the Alucard gif
+        sword_x = Window.GetX() + Window.GetWidth() / 2 - sword_image.GetWidth() / 2;
+        sword_y = Window.GetY() + Window.GetHeight() / 2 + frames[0].GetHeight() / 2 + 30;
+        
+        sword_sprite.SetX(sword_x);
+        sword_sprite.SetY(sword_y);
+
+        // Wipe effect using black mask covering from right to left
+        filled_width = Math.Int(sword_image.GetWidth() * boot_progress);
+        mask_width = Math.Int(sword_image.GetWidth() - filled_width);
+        
+        if (mask_width > 0) {
+            mask_scaled = black_image.Scale(mask_width, sword_image.GetHeight());
+            mask_sprite.SetImage(mask_scaled);
+            mask_sprite.SetX(sword_x + filled_width);
+            mask_sprite.SetY(sword_y);
+            mask_sprite.SetOpacity(1);
+        } else {
+            mask_sprite.SetOpacity(0);
+        }
+    }
+}
+
+Plymouth.SetBootProgressFunction(progress_callback);
