@@ -1,6 +1,6 @@
 # Alucard SOTN Plymouth Boot Theme
 
-A custom Plymouth boot splash screen featuring Alucard from Castlevania: Symphony of the Night, complete with an animated familiar sword loading bar!
+A custom Plymouth boot splash screen featuring Alucard from Castlevania: Symphony of the Night, complete with the Sword Familiar as a loading bar.
 
 ## Installation
 
@@ -42,4 +42,4 @@ sudo plymouthd ; sudo plymouth --show-splash ; sleep 5 ; sudo plymouth quit
 
 ---
 **Credits & Disclaimer:**
-The character "Alucard" and the "Familiar Sword" are properties of Konami Digital Entertainment. This is a non-commercial, fan-made theme.
+The character "Alucard" and the "Sword Familiar" are properties of Konami Digital Entertainment. This is a non-commercial, fan-made theme.
